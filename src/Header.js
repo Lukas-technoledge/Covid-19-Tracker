@@ -5,6 +5,7 @@ import './Header.css'
 function Header() {
   
 const [countries, setCountries] = useState([]);
+const [country, setCountry] = useState('worldwide')
 
 useEffect(() => {
 
@@ -23,12 +24,18 @@ useEffect(() => {
     }
     getCountriesData();
 }, [])
+  const onCountryChange = async (event) => {
+      const countryCode = event.target.value;
+
+      setCountry(countryCode);
+  };
 
   return (
     <div className='header'>
     <h2>COVID-19 TRACKER</h2>
     <FormControl className='header__dropdown'>
-        <Select variant='outlined' value="20">
+        <Select variant='outlined' onChange={onCountryChange} value={country}>
+        <MenuItem value="worldwide">Worldwide</MenuItem>
             {countries.map( (country => (
               <MenuItem value = {country.value}>{country.name}</MenuItem>
             )))}
