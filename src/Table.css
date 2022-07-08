@@ -9,7 +9,7 @@
 .table tr {
     display: flex;
     justify-content: space-between;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 
