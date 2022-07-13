@@ -3,9 +3,11 @@ import './App.css';
 // import Header from './Header';
 import InfoBox from './InfoBox';
 import Map from './Map';
+import LineGraph from './LineGraph';
 
 import React, { useEffect, useState } from 'react'
 import Table from './Table';
+import { sortData } from './util';
 
 function App() {
 
@@ -34,8 +36,9 @@ useEffect(() => {
           }
         ));
 
+        const sortedData = sortData(data);
         setCountries(countries);
-        setTableData(data);
+        setTableData(sortedData);
       });
     };
     getCountriesData();
@@ -84,6 +87,7 @@ useEffect(() => {
           <h3>Live cases by country</h3>
           <Table countries={tableData}/>
           <h3>Worldwide new cases</h3>
+          <LineGraph />
         </CardContent>
       </Card>
     </div>
